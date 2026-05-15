@@ -1,0 +1,56 @@
+:root {
+  color-scheme: dark;
+}
+
+.nav-item {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin: 2px 0;
+  color: rgb(203 213 225);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.nav-item:hover {
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.nav-item-active {
+  background: rgba(99, 102, 241, 0.16);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+}
+
+.card {
+  border: 1px solid rgb(30 41 59);
+  background: rgba(2, 6, 23, 0.4);
+  border-radius: 14px;
+  padding: 14px 14px;
+}
+
+.card-label {
+  font-size: 0.75rem;
+  color: rgb(148 163 184);
+}
+
+.card-value {
+  margin-top: 6px;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.th {
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 600;
+}
+
+.td {
+  padding: 12px 14px;
+  color: rgb(226 232 240);
+}
+
+.muted {
+  color: rgb(148 163 184);
+}
+
