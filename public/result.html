@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Formula 1 2020-2026 yarÄ±ÅŸ sonuÃ§larÄ± â€” yÄ±l ve yarÄ±ÅŸ bazÄ±nda filtrelenebilir interaktif dashboard."
+    />
+    <title>Results | Formula 1</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* â”€â”€ RESULT PAGE STYLES â”€â”€ */
+      .site-main--result {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 0;
+        background: #F7F4F1;
+        min-height: 60vh;
+      }
+
+      /* â”€â”€ Filtre alanÄ± â”€â”€ */
+      .result-filters {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 24px 6% 20px;
+        flex-wrap: wrap;
+      }
+
+      /* Pill-shape select */
+      .filter-select {
+        appearance: none;
+        -webkit-appearance: none;
+        background: #ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23111' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 16px center;
+        border: 1.5px solid #ddd;
+        border-radius: 999px;
+        padding: 10px 40px 10px 18px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #111;
+        cursor: pointer;
+        min-width: 120px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        outline: none;
+      }
+
+      .filter-select:focus,
+      .filter-select:hover {
+        border-color: #E10600;
+        box-shadow: 0 0 0 3px rgba(225, 6, 0, 0.1);
+      }
+
+      .filter-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #888;
+      }
+
+      /* â”€â”€ Content area â”€â”€ */
+      .result-content {
+        padding: 0 6% 48px;
+        max-width: 960px;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+
+      /* â”€â”€ Table heading â”€â”€ */
+      .result-heading {
+        font-size: 1.35rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: #111;
+        letter-spacing: 0.03em;
+        margin: 0 0 16px;
+        line-height: 1.2;
+      }
+
+      /* â”€â”€ TABLE 1: Season overview â”€â”€ */
+      .result-table {
+        width: 100%;
+        background: #ffffff;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      }
+
+      .result-table thead tr {
+        border-bottom: 2px solid #E10600;
+      }
+
+      .result-table th {
+        padding: 14px 18px;
+        font-size: 0.58rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #888;
+        text-align: left;
+        background: #ffffff;
+      }
+
+      .result-table td {
+        padding: 13px 18px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #111;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .result-table tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      .result-table tbody tr:hover td {
+        background: #fafafa;
+      }
+
+      /* Round number column â€” bold accent */
+      .result-table td.col-round {
+        font-weight: 900;
+        font-size: 1rem;
+        color: #111;
+        width: 48px;
+      }
+
+      /* Winner column */
+      .result-table td.col-winner {
+        font-weight: 700;
+      }
+
+      /* â”€â”€ TABLE 2: Race detail â”€â”€ */
+      /* POS column */
+      .result-table td.col-pos {
+        font-weight: 900;
+        font-size: 1rem;
+        width: 48px;
+        color: #111;
+      }
+
+      /* P1 row highlight */
+      .result-table tbody tr.pos-1 td {
+        background: #fffbf0;
+      }
+
+      .result-table tbody tr.pos-1 td.col-pos {
+        color: #E10600;
+      }
+
+      /* NO column */
+      .result-table td.col-no {
+        width: 56px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #555;
+      }
+
+      /* DNF badge */
+      .badge-dnf {
+        display: inline-block;
+        font-size: 0.6rem;
+        font-weight: 700;
+        background: #f0f0f0;
+        color: #888;
+        padding: 2px 7px;
+        border-radius: 4px;
+        letter-spacing: 0.05em;
+      }
+
+      /* â”€â”€ State: no data â”€â”€ */
+      .result-empty {
+        text-align: center;
+        padding: 48px 24px;
+        color: #aaa;
+        font-size: 0.85rem;
+        font-weight: 600;
+        background: #ffffff;
+        border-radius: 8px;
+      }
+
+      /* â”€â”€ Responsive â”€â”€ */
+      @media (max-width: 600px) {
+        .result-filters {
+          padding: 16px 4% 14px;
+          gap: 8px;
+        }
+
+        .result-content {
+          padding: 0 4% 32px;
+        }
+
+        .result-heading {
+          font-size: 1rem;
+        }
+
+        .result-table th,
+        .result-table td {
+          padding: 10px 12px;
+        }
+
+        .filter-select {
+          font-size: 0.75rem;
+          padding: 8px 32px 8px 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+
+        <a href="index.html" class="header-logo" aria-label="Formula 1 Ana Sayfa">
+          <img src="formula-1-logo.png" alt="Formula 1" class="logo-img logo-img--header" />
+        </a>
+
+        <nav class="main-nav" aria-label="Ana navigasyon">
+          <ul class="nav-list" role="list">
+            <li class="nav-item">
+              <a href="schedule.html" class="nav-link" id="nav-schedule">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a href="result.html" class="nav-link nav-link--active" id="nav-result">Result</a>
+            </li>
+            <li class="nav-item">
+              <a href="drivers.html" class="nav-link" id="nav-drivers">Drivers</a>
+            </li>
+            <li class="nav-item">
+              <a href="teams.html" class="nav-link" id="nav-teams">Teams</a>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="site-main site-main--result" id="main-content" role="main">
+
+      <!-- Page title stripe -->
+      <section class="page-title-section" aria-labelledby="result-heading-main">
+        <div class="page-title-stripe">
+          <img src="formula-1-logo.png" alt="" class="logo-img logo-img--stripe" aria-hidden="true" />
+          <div class="stripe-line" aria-hidden="true"></div>
+        </div>
+        <div class="page-title-row">
+          <h1 class="page-title" id="result-heading-main">RESULTS</h1>
+          <div class="page-title-accent" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- â”€â”€ Filtreler â”€â”€ -->
+      <div class="result-filters" role="search" aria-label="YÄ±l ve yarÄ±ÅŸ filtresi">
+        <label class="filter-label" for="select-year">Year</label>
+        <select id="select-year" class="filter-select" aria-label="YÄ±l seÃ§in">
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+        </select>
+
+        <label class="filter-label" for="select-race">Race</label>
+        <select id="select-race" class="filter-select" aria-label="YarÄ±ÅŸ seÃ§in">
+          <option value="all">All</option>
+        </select>
+      </div>
+
+      <!-- â”€â”€ Ä°Ã§erik â”€â”€ -->
+      <div class="result-content" id="result-content" aria-live="polite">
+        <!-- JS tarafÄ±ndan doldurulur -->
+      </div>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-strip">
+        <a href="index.html" class="footer-logo" aria-label="Formula 1 Ana Sayfa">
+          <img src="formula-1-logo.png" alt="Formula 1 Logosu" class="logo-img logo-img--footer" />
+        </a>
+        <div class="footer-red-line" aria-hidden="true"></div>
+      </div>
+      <p class="footer-copyright">
+        &copy; 2020-2026 Formula One World Championship Limited
+      </p>
+    </footer>
+
+    <!-- ===== DATA ===== -->
+    <script src="f1data.js"></script>
+
+    <!-- ===== APP LOGIC ===== -->
+    <script>
+      /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+         Vanilla JS â€” Result Dashboard
+         f1Data yapÄ±sÄ±: f1Data[year].races[] = {
+           round, name, winner, results: [{pos, no, driver, code}]
+         }
+      â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+      const yearSel  = document.getElementById('select-year');
+      const raceSel  = document.getElementById('select-race');
+      const content  = document.getElementById('result-content');
+
+      /* â”€â”€ YÄ±l dropdown'Ä± doldur â”€â”€ */
+      function populateRaceDropdown(year) {
+        const races = (f1Data[year] && f1Data[year].races) ? f1Data[year].races : [];
+        raceSel.innerHTML = '<option value="all">All</option>';
+        races.forEach(r => {
+          const opt = document.createElement('option');
+          opt.value = r.round;
+          opt.textContent = r.name;
+          raceSel.appendChild(opt);
+        });
+      }
+
+      /* â”€â”€ TABLO 1: Sezon Ã¶zeti (winner tablosu) â”€â”€ */
+      function renderSeasonTable(year) {
+        const races = (f1Data[year] && f1Data[year].races) ? f1Data[year].races : [];
+
+        if (races.length === 0) {
+          content.innerHTML = `<p class="result-empty">No results available</p>`;
+          return;
+        }
+
+        const hasResults = races.some(r => r.winner && r.winner !== 'â€”');
+
+        let rows = '';
+        races.forEach(r => {
+          const winner = (r.winner && r.winner !== 'â€”') ? r.winner : '<span style="color:#bbb">â€”</span>';
+          rows += `
+            <tr>
+              <td class="col-round">${r.round}</td>
+              <td class="col-gp">${r.name}</td>
+              <td class="col-winner">${winner}</td>
+            </tr>`;
+        });
+
+        content.innerHTML = `
+          <h2 class="result-heading" id="table-heading-season">${year} Race Results</h2>
+          <table class="result-table" role="table" aria-labelledby="table-heading-season">
+            <thead>
+              <tr>
+                <th scope="col">RND</th>
+                <th scope="col">Grand Prix</th>
+                <th scope="col">Winner</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows}
+            </tbody>
+          </table>`;
+      }
+
+      /* â”€â”€ TABLO 2: Spesifik yarÄ±ÅŸ sÄ±ralamasÄ± â”€â”€ */
+      function renderRaceDetail(year, round) {
+        const races = (f1Data[year] && f1Data[year].races) ? f1Data[year].races : [];
+        const race  = races.find(r => String(r.round) === String(round));
+
+        if (!race) {
+          content.innerHTML = `<p class="result-empty">No results available</p>`;
+          return;
+        }
+
+        if (!race.results || race.results.length === 0) {
+          content.innerHTML = `
+            <h2 class="result-heading">${race.name.toUpperCase()} â€” Race Result</h2>
+            <p class="result-empty">No results available</p>`;
+          return;
+        }
+
+        let rows = '';
+        race.results.forEach(r => {
+          const isDNF = r.pos === 'DNF' || r.pos === 'null' || !r.pos;
+          const posCell = isDNF
+            ? `<td class="col-pos"><span class="badge-dnf">DNF</span></td>`
+            : `<td class="col-pos">${r.pos}</td>`;
+          const rowClass = r.pos === '1' ? ' class="pos-1"' : '';
+
+          rows += `
+            <tr${rowClass}>
+              ${posCell}
+              <td class="col-no">${r.no !== '?' ? r.no : 'â€”'}</td>
+              <td class="col-driver">${r.driver}</td>
+            </tr>`;
+        });
+
+        content.innerHTML = `
+          <h2 class="result-heading" id="table-heading-race">${race.name.toUpperCase()} â€” Race Result</h2>
+          <table class="result-table" role="table" aria-labelledby="table-heading-race">
+            <thead>
+              <tr>
+                <th scope="col">POS</th>
+                <th scope="col">NO</th>
+                <th scope="col">Driver</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows}
+            </tbody>
+          </table>`;
+      }
+
+      /* -- Ana render dispatcher -- */
+      function render() {
+        const year  = parseInt(yearSel.value, 10);
+        const race  = raceSel.value;
+
+        if (race === 'all') {
+          renderSeasonTable(year);
+        } else {
+          renderRaceDetail(year, race);
+        }
+      }
+
+      /* -- URL Parametre Okuyucu -- */
+      /* race-N.html "Show all" butonu: result.html?year=2026&round=N */
+      function applyUrlParams() {
+        const params     = new URLSearchParams(window.location.search);
+        const yearParam  = params.get('year');
+        const roundParam = params.get('round');
+
+        if (yearParam && f1Data[yearParam]) {
+          // Yil dropdown'unu ayarla
+          yearSel.value = yearParam;
+          populateRaceDropdown(yearParam);
+
+          if (roundParam) {
+            // Round dropdown'unda ilgili option'i bul
+            const opts   = Array.from(raceSel.options);
+            const target = opts.find(o => String(o.value) === String(roundParam));
+            if (target) { raceSel.value = roundParam; }
+          }
+        }
+      }
+
+      /* -- Event listeners -- */
+      yearSel.addEventListener('change', function () {
+        populateRaceDropdown(this.value);
+        render();
+      });
+
+      raceSel.addEventListener('change', render);
+
+      /* -- Ilk yukleme: once URL param varsa uygula, sonra render -- */
+      populateRaceDropdown(yearSel.value);
+      applyUrlParams();
+      render();
+    </script>
+
+  </body>
+</html>

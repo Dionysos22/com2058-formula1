@@ -1,7 +1,7 @@
 # COM2058 – Project Phase 1
 ## Formula 1 Database – Data Requirements
 
-**Group:** _TODO: names & student IDs_
+**Group:** Sarp Mataş
 **Date:** 26.04.2026
 **Application domain:** Formula 1 World Championship statistics system.
 

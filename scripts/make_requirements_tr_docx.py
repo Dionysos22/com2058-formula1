@@ -14,6 +14,7 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 from docx.shared import Pt, RGBColor, Cm
 
+from group_info import GROUP_TR
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 OUTPUT = PROJECT_DIR / "Requirements_TR.docx"
@@ -119,7 +120,7 @@ def build() -> None:
 
     add_runs(doc, [
         ("Grup: ", {"bold": True}),
-        ("TODO: isim ve öğrenci numaraları", {"italic": True}),
+        (GROUP_TR, {}),
     ])
     add_runs(doc, [
         ("Tarih: ", {"bold": True}),

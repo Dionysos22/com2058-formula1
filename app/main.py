@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.db import query_one
@@ -22,15 +21,10 @@ app.include_router(meta_router)
 app.include_router(standings_router)
 app.include_router(demo_router)
 
-app.mount("/static", StaticFiles(directory="public"), name="public")
-
-
 @app.get("/health")
 def health() -> dict[str, str]:
     row = query_one("SELECT 1 AS ok;")
     return {"status": "ok" if row and row.get("ok") == 1 else "unknown"}
 
 
-@app.get("/")
-def spa() -> FileResponse:
-    return FileResponse("public/index.html")
+app.mount("/", StaticFiles(directory="public", html=True), name="static")

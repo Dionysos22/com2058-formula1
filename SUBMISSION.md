@@ -78,13 +78,30 @@ on every edge).
 - `Project/db/init/`            – schema (`01_…`) + seed (`02_…`, 2020–2026)
 - `Project/docker-compose.yml`  – MySQL 8 container
 - `Project/README.md`           – how to run the app
-- `Project/SAMPLE_QUERIES.sql`  – 6+ report queries (Requirements §2)
+- `Project/SAMPLE_QUERIES.sql`  – 12 report queries (Requirements §2 + extras)
 
 ### Aux
 - `Project/ERD.md`              – Mermaid backup of the ERD
-- `Project/SUBMISSION.md`       – this guide
 - `Project/scripts/make_requirements_docx.py`    – regenerates English .docx
 - `Project/scripts/make_requirements_tr_docx.py` – regenerates Turkish .docx
+
+## Automated tests (Phase 3 + 4)
+
+```bash
+cd Project
+docker compose up -d
+source .venv/bin/activate
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000   # ayrı terminal
+python scripts/smoke_test.py
+python scripts/validate_sample_queries.py
+```
+
+Her iki script de hatasız bitmeli.
+
+### Phase 4 (report)
+- `Project/REPORT.md`              – Phase 4 report source (export to PDF for upload)
+- `Project/scripts/smoke_test.py`  – API + static smoke test
+- `Project/scripts/validate_sample_queries.py` – runs all SQL in `SAMPLE_QUERIES.sql`
 
 ## Pre-submission checklist
 

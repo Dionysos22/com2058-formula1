@@ -1,0 +1,378 @@
+/* ============================================================
+   FORMULA 1 — TEAM DETAIL — team-detail.css
+   Tüm takım detay sayfalarının paylaştığı stil dosyası.
+   Takıma özel renkler, her HTML'nin <style> bloğunda
+   :root üzerinden override edilir.
+   ============================================================ */
+
+
+/* ── CSS CUSTOM PROPERTIES ── */
+/* Varsayılan değerler: Aston Martin (her HTML'de override edilecek) */
+:root {
+  --tc1: #229971;   /* Renk 1 — Hero arka plan, pilot metin rengi       */
+  --tc2: #0B3326;   /* Renk 2 — Drivers + Statistic bölüm arka planı    */
+  --tc3: #CEDC00;   /* Renk 3 — Vurgu, kart arka plan, bölüm başlıkları */
+
+  /* Sabit tasarım tokenleri */
+  --td-white:       #ffffff;
+  --td-dark:        #111111;
+  --td-muted:       #888888;
+  --td-border-dark: rgba(255, 255, 255, 0.10);
+  --td-radius:      8px;
+  --td-pad-x:       16px;
+  --td-max-w:       860px;
+  --td-transition:  0.2s ease;
+}
+
+
+/* ──────────────────────────────────────────
+   HEADER: TAKIM LOGOSU (sağ uç ek)
+   style.css'teki mevcut .site-header yapısı korunur.
+   Sadece takım logosunu sağ uca ekleriz.
+────────────────────────────────────────── */
+
+/* Takım logosu wrapper (header-inner'ın son elemanı) */
+.header-team-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-left: auto;  /* nav'ı solda, logoyu sağda tutar */
+}
+
+.logo-img--team {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+
+/* ──────────────────────────────────────────
+   BÖLÜM 1 — HERO
+────────────────────────────────────────── */
+
+.team-hero {
+  position: relative;
+  background-color: var(--tc1);
+  height: 250px;
+  overflow: hidden;
+}
+
+/* Devasa arka plan takım adı (dekoratif, aria-hidden) */
+.team-hero__bg-name {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  z-index: 1;
+  font-size: clamp(2.6rem, 13vw, 6.5rem);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--tc3);
+  white-space: nowrap;
+  line-height: 1;
+  padding-left: 10px;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.02em;
+}
+
+/* Araç görseli — hero'nun altına yapışık, z-index ile öne çıkar */
+.team-hero__car {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 92%;
+  max-width: 560px;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+
+/* ──────────────────────────────────────────
+   BÖLÜM 2 — SECTION LABEL (Paylaşılan Bileşen)
+   "DRIVERS", "STATISTIC", "TEAM PROFILE" başlıkları
+   için ortak yapı.
+────────────────────────────────────────── */
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px var(--td-pad-x);
+}
+
+/* İki eğik paralel çizgi dekorasyonu (//) */
+.section-label__deco {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.section-label__deco span {
+  display: block;
+  width: 5px;
+  height: 20px;
+  background: var(--tc3);
+  transform: skewX(-18deg);
+  border-radius: 1px;
+}
+
+/* Bölüm başlık metni: italik, kalın, Color 3 */
+.section-label__title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  font-style: italic;
+  color: var(--tc3);
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+/* Başlığın sağına uzanan yatay çizgi */
+.section-label__line {
+  flex: 1;
+  height: 2px;
+  background: var(--tc3);
+  opacity: 0.35;
+  border-radius: 1px;
+}
+
+
+/* ──────────────────────────────────────────
+   BÖLÜM 3 — DRIVERS
+   Hero Color 1'den Color 2'ye gradient geçiş.
+────────────────────────────────────────── */
+
+.section-drivers {
+  /* Renk 1 → Renk 2 pürüzsüz geçiş */
+  background: linear-gradient(
+    180deg,
+    var(--tc1)  0%,
+    var(--tc2) 40%,
+    var(--tc2) 100%
+  );
+  padding-bottom: 28px;
+}
+
+/* 2 sütunlu pilot kart ızgarası */
+.drivers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 var(--td-pad-x);
+  max-width: var(--td-max-w);
+  margin: 0 auto;
+}
+
+/* ── Pilot Kartı ── */
+.driver-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--tc3);             /* Renk 3 kart arka planı */
+  border-radius: var(--td-radius);
+  overflow: hidden;
+  min-height: 175px;
+  cursor: pointer;
+  transition: transform var(--td-transition), box-shadow var(--td-transition);
+}
+
+.driver-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* Kart üst: isim + numara */
+.driver-card__info {
+  padding: 10px 10px 0;
+  flex-shrink: 0;
+}
+
+/* Pilot adı — Renk 1 metin */
+.driver-card__name {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--tc1);                  /* Renk 1 metin */
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+/* Yarış numarası — Renk 1 metin */
+.driver-card__number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--tc1);                  /* Renk 1 metin */
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* Pilot fotoğrafı */
+.driver-card__photo {
+  width: 100%;
+  height: auto;
+  flex: 1;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+
+/* ──────────────────────────────────────────
+   BÖLÜM 4 — STATİSTİK
+   Arka plan tamamen Renk 2 olarak devam eder.
+────────────────────────────────────────── */
+
+.section-stats {
+  background: var(--tc2);
+  padding-bottom: 36px;
+}
+
+.season-list {
+  padding: 0 var(--td-pad-x);
+  max-width: var(--td-max-w);
+  margin: 0 auto;
+}
+
+/* Sezon satırı */
+.season-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--td-border-dark);
+}
+
+.season-item:last-child {
+  border-bottom: none;
+}
+
+.season-item__year {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--td-white);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.season-item__data {
+  display: flex;
+  gap: 36px;
+}
+
+/* İstatistik bloğu */
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-block__label {
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.stat-block__value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--td-white);
+}
+
+
+/* ──────────────────────────────────────────
+   BÖLÜM 5 — TEAM PROFILE
+   Arka plan tamamen beyaz (#FFFFFF).
+────────────────────────────────────────── */
+
+.section-profile {
+  background: var(--td-white);
+  padding-bottom: 48px;
+}
+
+/* Profile section label için alt kenarlık */
+.section-profile .section-label {
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* Profil veri listesi */
+.profile-list {
+  padding: var(--td-pad-x);
+  max-width: var(--td-max-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Profil satırı */
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* Etiket: küçük, gri */
+.profile-item__label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--td-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Değer: kalın, koyu (beyaz arka planda okunabilir) */
+.profile-item__value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--td-dark);
+  line-height: 1.3;
+}
+
+
+/* ──────────────────────────────────────────
+   RESPONSIVE
+────────────────────────────────────────── */
+
+/* Küçük ekranlar */
+@media (max-width: 480px) {
+  .team-hero         { height: 190px; }
+  .team-hero__car    { width: 95%; }
+
+  .driver-card         { min-height: 140px; }
+  .driver-card__number { font-size: 1.6rem; }
+  .driver-card__name   { font-size: 0.63rem; }
+
+  .season-item__data   { gap: 18px; }
+  .stat-block__value   { font-size: 0.88rem; }
+
+  .logo-img--team      { height: 22px; }
+}
+
+/* Orta ekranlar */
+@media (min-width: 600px) {
+  .drivers-grid        { gap: 16px; }
+  .driver-card         { min-height: 200px; }
+  .driver-card__name   { font-size: 0.8rem; }
+  .driver-card__number { font-size: 2.3rem; }
+}
+
+/* Geniş ekranlar */
+@media (min-width: 768px) {
+  :root { --td-pad-x: 28px; }
+
+  .team-hero         { height: 290px; }
+  .team-hero__car    { max-width: 640px; }
+
+  .drivers-grid        { gap: 20px; }
+  .driver-card         { min-height: 230px; }
+  .driver-card__name   { font-size: 0.88rem; }
+  .driver-card__number { font-size: 2.6rem; }
+}
+
+@media (min-width: 1024px) {
+  :root { --td-pad-x: 40px; }
+
+  .team-hero         { height: 330px; }
+  .team-hero__car    { max-width: 740px; }
+}

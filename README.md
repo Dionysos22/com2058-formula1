@@ -53,7 +53,8 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Open **http://localhost:8000/** for the dashboard. API docs: **http://localhost:8000/docs**
+Open **http://localhost:8000/** for the F1 website (from [Mdevyl/Formula-1](https://github.com/Mdevyl/Formula-1)).  
+SQL/API dashboard: **http://localhost:8000/dashboard.html** — API docs: **http://localhost:8000/docs**
 
 ## API endpoints (course schema)
 
@@ -80,10 +81,13 @@ Example SQL for the report: `SAMPLE_QUERIES.sql`
 | `Formula_1.sql` | Canonical schema |
 | `db/init/` | Docker init (schema + seed) |
 | `app/` | FastAPI + raw SQL routes |
-| `public/` | SPA (HTML/CSS/JS) |
+| `public/` | F1 website UI ([Mdevyl/Formula-1](https://github.com/Mdevyl/Formula-1)) + `dashboard.html` (SQL API) |
 | `Requirements.md` / `Requirements.docx` | Phase 1 |
 | `ERD.drawio` / `ERD.pdf` | Phase 2 |
-| `SAMPLE_QUERIES.sql` | Phase 4 sample queries |
+| `SAMPLE_QUERIES.sql` | Phase 4 sample queries (12) |
+| `REPORT.md` | Phase 4 report (export to PDF) |
+| `scripts/smoke_test.py` | API + frontend smoke test |
+| `scripts/validate_sample_queries.py` | SQL query validator |
 | `SUBMISSION.md` | Upload checklist |
 
 ## Phase 1 + 2 submission

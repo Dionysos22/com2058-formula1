@@ -1,56 +1,919 @@
+﻿/* ============================================================
+   FORMULA 1 â€” STYLE.CSS
+   Temiz, modÃ¼ler ve semantik CSS yapÄ±sÄ±.
+   Ileride veritabanÄ± entegrasyonuna hazÄ±r.
+   ============================================================ */
+
+/* â”€â”€ 1. CSS CUSTOM PROPERTIES (Design Tokens) â”€â”€ */
 :root {
-  color-scheme: dark;
+  --color-bg: #ffffff;
+  --color-text-primary: #111111;
+  --color-text-muted: #333333;
+  --color-text-copyright: #222222;
+  --color-accent: #e10600;          /* F1 kÄ±rmÄ±zÄ±sÄ± */
+  --color-hero-logo: #f28b82;       /* Somon / uÃ§uk kÄ±rmÄ±zÄ± â€” hero logo tonu */
+  --color-nav-hover: #e10600;
+
+  --font-family-base: 'Montserrat', sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  --header-height: 72px;
+  --footer-height: 72px;
+
+  --logo-header-height: 32px;
+  --logo-footer-height: 28px;
+  --logo-hero-max-width: 560px;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+
+  --transition-base: 0.2s ease;
 }
 
-.nav-item {
+
+/* â”€â”€ 2. RESET & BASE â”€â”€ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
   display: block;
-  padding: 10px 12px;
-  border-radius: 10px;
-  margin: 2px 0;
-  color: rgb(203 213 225);
+  max-width: 100%;
+}
+
+a {
   text-decoration: none;
-  font-size: 0.95rem;
+  color: inherit;
 }
 
-.nav-item:hover {
-  background: rgba(30, 41, 59, 0.5);
+ul {
+  list-style: none;
 }
 
-.nav-item-active {
-  background: rgba(99, 102, 241, 0.16);
-  border: 1px solid rgba(99, 102, 241, 0.35);
+
+/* â”€â”€ 3. HEADER â”€â”€ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.card {
-  border: 1px solid rgb(30 41 59);
-  background: rgba(2, 6, 23, 0.4);
-  border-radius: 14px;
-  padding: 14px 14px;
+.header-inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--spacing-xl);
+  gap: var(--spacing-xl);
 }
 
-.card-label {
-  font-size: 0.75rem;
-  color: rgb(148 163 184);
+/* Header logosu */
+.header-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
-.card-value {
-  margin-top: 6px;
-  font-size: 1.35rem;
+.logo-img--header {
+  height: var(--logo-header-height);
+  width: auto;
+  object-fit: contain;
+}
+
+/* Navigasyon */
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+  padding: var(--spacing-xs) 0;
+  position: relative;
+  transition: color var(--transition-base);
+}
+
+/* Hover: ince kÄ±rmÄ±zÄ± alt Ã§izgi efekti */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-nav-hover);
+  transition: width var(--transition-base);
+}
+
+.nav-link:hover {
+  color: var(--color-nav-hover);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+
+/* â”€â”€ 4. MAIN (Hero) â”€â”€ */
+.site-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+}
+
+.hero-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-img--hero {
+  width: 100%;
+  max-width: var(--logo-hero-max-width);
+  height: auto;
+  object-fit: contain;
+
+  /* Somon / uÃ§uk kÄ±rmÄ±zÄ± ton â€” referans tasarÄ±ma uygun */
+  filter: saturate(0.6) sepia(0.3) hue-rotate(-10deg) brightness(1.15) opacity(0.72);
+  user-select: none;
+  pointer-events: none;
+}
+
+
+/* â”€â”€ 5. FOOTER â”€â”€ */
+.site-footer {
+  width: 100%;
+  background-color: var(--color-bg);
+  padding-bottom: var(--spacing-md);
+}
+
+/* Åerit satÄ±rÄ±: logo + kÄ±rmÄ±zÄ± Ã§izgi */
+.footer-strip {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--footer-height);
+  border-top: 1px solid #eeeeee;
+  padding: 0 var(--spacing-xl);
+  gap: var(--spacing-md);
+}
+
+.footer-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.logo-img--footer {
+  height: var(--logo-footer-height);
+  width: auto;
+  object-fit: contain;
+}
+
+/* KÄ±rmÄ±zÄ± yatay ÅŸerit */
+.footer-red-line {
+  flex: 1;
+  height: 3px;
+  background-color: var(--color-accent);
+  border-radius: 1px;
+}
+
+/* Telif metni */
+.footer-copyright {
+  padding: var(--spacing-sm) var(--spacing-xl) 0;
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-copyright);
+  letter-spacing: 0.01em;
+}
+
+
+/* â”€â”€ 6. RESPONSIVE â”€â”€ */
+
+/* Tablet ve altÄ± */
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 20px;
+    --logo-hero-max-width: 400px;
+  }
+
+  .nav-list {
+    gap: var(--spacing-lg);
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobil */
+@media (max-width: 480px) {
+  :root {
+    --header-height: 56px;
+    --logo-header-height: 26px;
+    --logo-hero-max-width: 280px;
+    --spacing-xl: 16px;
+  }
+
+  .nav-list {
+    gap: var(--spacing-md);
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+  }
+
+  .logo-img--footer {
+    height: 22px;
+  }
+
+  .footer-copyright {
+    font-size: 0.7rem;
+  }
+}
+
+
+/* ============================================================
+   TEAMS PAGE â€” Teams sayfasÄ±na Ã¶zel stiller
+   ============================================================ */
+
+
+/* â”€â”€ 7. NAV AKTÄ°F DURUM â”€â”€ */
+
+/* Teams sayfasÄ±nda "Teams" linki aktif gÃ¶rÃ¼nÃ¼r */
+.nav-link--active {
+  color: var(--color-accent);
+}
+
+.nav-link--active::after {
+  width: 100%;
+  background-color: var(--color-accent);
+}
+
+
+/* â”€â”€ 8. TEAMS â€” MAIN OVERRIDE â”€â”€ */
+
+/* Teams sayfasÄ±nda main iÃ§eriÄŸi Ã¼stten baÅŸlar (hero sayfasÄ±ndaki merkezleme kalkar) */
+.site-main--teams {
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 0;
+}
+
+
+/* â”€â”€ 9. SAYFA BAÅLIÄI (Title Section) â”€â”€ */
+
+.page-title-section {
+  width: 100%;
+  padding: 0 var(--spacing-xl);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Ãœst stripe satÄ±rÄ±: mini F1 logo + kÄ±rmÄ±zÄ± ÅŸerit */
+.page-title-stripe {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-sm);
+}
+
+/* Stripe iÃ§indeki kÃ¼Ã§Ã¼k F1 logosu */
+.logo-img--stripe {
+  height: 18px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.stripe-line {
+  flex: 1;
+  height: 3px;
+  background-color: var(--color-accent);
+  border-radius: 1px;
+}
+
+/* TEAMS baÅŸlÄ±k satÄ±rÄ± */
+.page-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xs) 0 var(--spacing-md);
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-style: italic;
+  color: var(--color-accent);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* BaÅŸlÄ±k saÄŸÄ±ndaki kÄ±sa kÄ±rmÄ±zÄ± Ã§izgi */
+.page-title-accent {
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-accent);
+  border-radius: 1px;
+}
+
+
+/* â”€â”€ 10. TEAMS GRID â”€â”€ */
+
+.teams-section {
+  width: 100%;
+  padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
+}
+
+.teams-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+/* â”€â”€ 11. TEAM CARD BASE â”€â”€ */
+
+.team-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.team-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* Kart Ã¼st satÄ±rÄ±: takÄ±m adÄ± (sol) + logo (saÄŸ) */
+.team-card__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-md) 0;
+  z-index: 2;
+}
+
+/* TakÄ±m adÄ± */
+.team-card__name {
+  font-size: 1.05rem;
+  font-weight: var(--font-weight-semibold);
+  color: #ffffff;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* AÃ§Ä±k arka planlÄ± kartlar (Cadillac, Haas) iÃ§in koyu metin */
+.team-card__name--dark {
+  color: #111111;
+  text-shadow: none;
+}
+
+/* TakÄ±m logosu */
+.team-card__logo {
+  height: 32px;
+  width: auto;
+  max-width: 64px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* AraÃ§ gÃ¶rseli wrapper â€” kartÄ±n saÄŸ yarÄ±sÄ±nda, alta yapÄ±ÅŸÄ±k */
+.team-card__car-wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 72%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  z-index: 1;
+}
+
+/* AraÃ§ gÃ¶rseli */
+.team-card__car {
+  width: 100%;
+  height: auto;
+  max-height: 120%;
+  object-fit: contain;
+  object-position: right bottom;
+  display: block;
+}
+
+
+/* â”€â”€ 12. TEAM RENK SINIFLARI â”€â”€ */
+
+/* Hex kodlarÄ± kullanÄ±cÄ± tarafÄ±ndan belirlendi */
+.team-card--ferrari       { background-color: #ED1D24; }
+.team-card--aston-martin  { background-color: #229971; }
+.team-card--alpine        { background-color: #00A1E8; }
+.team-card--audi          { background-color: #FF2D00; }
+.team-card--cadillac      { background-color: #D7D6DD; }
+.team-card--haas          { background-color: #DEE1E2; }
+.team-card--mclaren       { background-color: #FF8000; }
+.team-card--mercedes      { background-color: #27F4D2; }
+.team-card--racing-bulls  { background-color: #6692FF; }
+.team-card--red-bull      { background-color: #3671C6; }
+.team-card--williams      { background-color: #1868DB; }
+
+
+/* â”€â”€ 13. TEAMS RESPONSIVE â”€â”€ */
+
+@media (max-width: 768px) {
+  .teams-section {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+
+  .page-title-section {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+
+  .team-card {
+    height: 120px;
+    border-radius: 10px;
+  }
+
+  .team-card__name {
+    font-size: 0.95rem;
+  }
+
+  .team-card__logo {
+    height: 26px;
+    max-width: 52px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .teams-grid {
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .teams-section,
+  .page-title-section {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
+  .team-card {
+    height: 100px;
+    border-radius: 8px;
+  }
+
+  .team-card__name {
+    font-size: 0.82rem;
+  }
+
+  .team-card__logo {
+    height: 22px;
+    max-width: 44px;
+  }
+
+  .team-card__header {
+    padding: var(--spacing-sm) var(--spacing-sm) 0;
+  }
+
+  .page-title {
+    font-size: 1.3rem;
+  }
+}
+
+
+/* ============================================================
+   DRIVERS PAGE â€” Pilots listesi sayfasÄ±na Ã¶zel stiller
+   ============================================================ */
+
+
+/* â”€â”€ DRIVERS â€” MAIN OVERRIDE â”€â”€ */
+/* Drivers sayfasÄ±nda main iÃ§eriÄŸi Ã¼stten baÅŸlar */
+.site-main--drivers {
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 0;
+}
+
+
+/* â”€â”€ PILOTS SECTION â”€â”€ */
+.pilots-section {
+  width: 100%;
+  padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
+}
+
+/* 2 sÃ¼tunlu pilot kart Ä±zgarasÄ± */
+.pilots-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+
+/* â”€â”€ PILOT CARD BASE â”€â”€ */
+/* Renk deÄŸerleri her modifier class'Ä±nda CSS deÄŸiÅŸkeni olarak tanÄ±mlanÄ±r.
+   DB entegrasyonunda sadece --pc-bg ve --pc-text deÄŸerleri gÃ¼ncellenecek. */
+.pilot-card {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 148px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: var(--pc-bg, #888888);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.pilot-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+/* Sol: bilgi alanÄ± */
+.pilot-card__info {
+  flex: 0 0 43%;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  z-index: 1;
+}
+
+/* Ä°sim grubu: ad + soyad + takÄ±m */
+.pilot-card__name-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* Pilot adÄ± (kÃ¼Ã§Ã¼k) */
+.pilot-card__firstname {
+  display: block;
+  font-size: 0.78rem;
   font-weight: 600;
+  color: var(--pc-text, #ffffff);
+  line-height: 1.2;
 }
 
-.th {
-  text-align: left;
-  padding: 12px 14px;
+/* Pilot soyadÄ± (bÃ¼yÃ¼k, kalÄ±n) */
+.pilot-card__lastname {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--pc-text, #ffffff);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+/* TakÄ±m adÄ± (Ã§ok kÃ¼Ã§Ã¼k, hafif soluk) */
+.pilot-card__team {
+  display: block;
+  font-size: 0.55rem;
   font-weight: 600;
+  color: var(--pc-text, #ffffff);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+  margin-top: 3px;
 }
 
-.td {
-  padding: 12px 14px;
-  color: rgb(226 232 240);
+/* YarÄ±ÅŸ numarasÄ± (alt sol, bÃ¼yÃ¼k) */
+.pilot-card__number {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--pc-text, #ffffff);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-.muted {
-  color: rgb(148 163 184);
+/* SaÄŸ: fotoÄŸraf alanÄ± */
+.pilot-card__photo-wrapper {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
 }
 
+.pilot-card__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+
+/* â”€â”€ PILOT CARD TAKIM RENK SINIFLARI â”€â”€ */
+/* CSS custom property yaklaÅŸÄ±mÄ± â€” arka plan ve metin rengi tek yerden yÃ¶netilir */
+.pilot-card--ferrari      { --pc-bg: #ED1D24; --pc-text: #5C0012; }
+.pilot-card--aston-martin { --pc-bg: #229971; --pc-text: #0B3326; }
+.pilot-card--alpine       { --pc-bg: #00A1E8; --pc-text: #0061E8; }
+.pilot-card--audi         { --pc-bg: #FF2D00; --pc-text: #751500; }
+
+/* Tamamlanan 7 takÄ±m renk sÄ±nÄ±fÄ± */
+.pilot-card--cadillac     { --pc-bg: #D7D6DD; --pc-text: #AAAAAD; }
+.pilot-card--haas         { --pc-bg: #DEE1E2; --pc-text: #AAAAAD; }
+.pilot-card--mclaren      { --pc-bg: #FF8000; --pc-text: #A25200; }
+.pilot-card--mercedes     { --pc-bg: #27F4D2; --pc-text: #0D9982; }
+.pilot-card--racing-bulls { --pc-bg: #6692FF; --pc-text: #1F53D4; }
+.pilot-card--red-bull     { --pc-bg: #3671C6; --pc-text: #122442; }
+.pilot-card--williams     { --pc-bg: #1868DB; --pc-text: #0C2F63; }
+
+
+/* â”€â”€ DRIVERS RESPONSIVE â”€â”€ */
+@media (max-width: 600px) {
+  .pilots-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .pilot-card {
+    height: 128px;
+  }
+
+  .pilot-card__lastname {
+    font-size: 0.95rem;
+  }
+
+  .pilot-card__number {
+    font-size: 1.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pilots-section {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
+  .pilot-card {
+    height: 115px;
+    border-radius: 8px;
+  }
+
+  .pilot-card__info {
+    padding: 10px 8px;
+  }
+
+  .pilot-card__firstname {
+    font-size: 0.7rem;
+  }
+
+  .pilot-card__lastname {
+    font-size: 0.88rem;
+  }
+
+  .pilot-card__number {
+    font-size: 1.6rem;
+  }
+}
+
+
+/* ============================================================
+   SCHEDULE PAGE â€” YarÄ±ÅŸ takvimi sayfasÄ± stilleri
+   ============================================================ */
+
+
+/* â”€â”€ Main override â”€â”€ */
+.site-main--schedule {
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 0;
+}
+
+/* â”€â”€ Kart listesi wrapper â”€â”€ */
+.schedule-section {
+  width: 100%;
+  padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* â”€â”€ YarÄ±ÅŸ kartÄ± â”€â”€ */
+/* Arka plan: #F7F4F1, kÃ¶ÅŸeler yuvarlatÄ±lmÄ±ÅŸ */
+.race-card {
+  background-color: #F7F4F1;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 18px 22px 0;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.race-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* â”€â”€ Ãœst satÄ±r: Round | Country | Date â”€â”€ */
+.race-card__header {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 6px;
+}
+
+/* Devasa yarÄ±ÅŸ numarasÄ± */
+.race-card__round {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #111111;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Ãœlke adÄ± â€” ince, bÃ¼yÃ¼k harf, ortalÄ± */
+.race-card__country {
+  font-size: 1.1rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: #111111;
+}
+
+/* Tarih â€” saÄŸa dayalÄ±, belirgin */
+.race-card__date {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: right;
+  color: #111111;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+
+/* â”€â”€ Orta satÄ±r: Resmi GP adÄ± â”€â”€ */
+.race-card__name {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #333333;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+/* â”€â”€ Alt satÄ±r: Pist krokisi gÃ¶rseli â”€â”€ */
+.race-card__circuit {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* object-fit: contain â†’ gÃ¶rsel kesilmez, orijinal oranÄ± korunur */
+.race-card__circuit-img {
+  max-height: 150px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+
+/* â”€â”€ Schedule Responsive â”€â”€ */
+@media (max-width: 600px) {
+  .schedule-section {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+
+  .race-card {
+    padding: 14px 16px 0;
+    border-radius: 8px;
+  }
+
+  .race-card__header {
+    grid-template-columns: 44px 1fr auto;
+    gap: 0.6rem;
+  }
+
+  .race-card__round {
+    font-size: 2rem;
+  }
+
+  .race-card__country {
+    font-size: 0.9rem;
+  }
+
+  .race-card__date {
+    font-size: 0.75rem;
+  }
+
+  .race-card__circuit-img {
+    max-height: 110px;
+  }
+}
+
+@media (max-width: 380px) {
+  .race-card__round {
+    font-size: 1.7rem;
+  }
+
+  .race-card__circuit-img {
+    max-height: 90px;
+  }
+}
+
+
+/* ============================================================
+   RACE CARD LINK — schedule.html tıklanabilir kartlar
+   ============================================================ */
+.race-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.race-card-link:hover .race-card {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* .race-card içindeki hover efektini kaldır (link üstleniyor) */
+.race-card-link .race-card:hover {
+  transform: none;
+  box-shadow: none;
+}

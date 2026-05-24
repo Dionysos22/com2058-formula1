@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Franco Colapinto — Alpine Formula 1 pilotu. İstatistikler ve profil." />
+    <title>Franco Colapinto | Formula 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="driver-detail.css" />
+    <style>
+      :root {
+        --dc1: #00A1E8;
+        --dc2: #0061E8;
+        --dc3: #F7A1CA;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <a href="index.html" class="header-logo" aria-label="Formula 1 Ana Sayfa">
+          <img src="formula-1-logo.png" alt="Formula 1" class="logo-img logo-img--header" />
+        </a>
+        <nav class="main-nav" aria-label="Ana navigasyon">
+          <ul class="nav-list" role="list">
+            <li class="nav-item"><a href="schedule.html" class="nav-link" id="nav-schedule">Schedule</a></li>
+            <li class="nav-item"><a href="result.html" class="nav-link" id="nav-result">Result</a></li>
+            <li class="nav-item"><a href="drivers.html" class="nav-link nav-link--active" id="nav-drivers">Drivers</a></li>
+            <li class="nav-item"><a href="teams.html" class="nav-link" id="nav-teams">Teams</a></li>
+          </ul>
+        </nav>
+        <div class="header-team-logo">
+          <img src="Alpine logo.avif" alt="Alpine logosu" class="logo-img logo-img--team" />
+        </div>
+      </div>
+    </header>
+
+    <main class="site-main site-main--driver-detail" id="main-content" role="main">
+
+      <section class="driver-hero" aria-label="Franco Colapinto hero bölümü">
+        <div class="driver-hero__bg" aria-hidden="true"></div>
+        <span class="driver-hero__firstname" aria-hidden="true">Franco</span>
+        <span class="driver-hero__number" aria-hidden="true">43</span>
+        <img class="driver-hero__photo" src="alpine 2.avif" alt="Franco Colapinto — Alpine" />
+        <div class="driver-hero__nameplate">
+          <span class="driver-hero__lastname">Colapinto</span>
+        </div>
+        <div class="driver-hero__strip" aria-hidden="true"></div>
+      </section>
+
+      <div class="driver-info">
+
+        <div class="driver-seasons" aria-label="Sezon istatistikleri">
+          <div class="season-block">
+            <p class="season-block__year">2026 Season</p>
+            <div class="season-block__data">
+              <div class="stat-col">
+                <span class="stat-col__label">Season Position</span>
+                <span class="stat-col__value">—</span>
+              </div>
+              <div class="stat-col">
+                <span class="stat-col__label">Season Points</span>
+                <span class="stat-col__value">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="season-block">
+            <p class="season-block__year">2025 Season</p>
+            <div class="season-block__data">
+              <div class="stat-col">
+                <span class="stat-col__label">Season Position</span>
+                <span class="stat-col__value">18th</span>
+              </div>
+              <div class="stat-col">
+                <span class="stat-col__label">Season Points</span>
+                <span class="stat-col__value">5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="career-stats" aria-label="Kariyer istatistikleri">
+          <h2 class="career-stats__heading">Career Stats</h2>
+          <div class="career-stat-row">
+            <span class="career-stat-row__label">Podiums</span>
+            <span class="career-stat-row__value">0</span>
+          </div>
+          <div class="career-stat-row">
+            <span class="career-stat-row__label">Pole Positions</span>
+            <span class="career-stat-row__value">0</span>
+          </div>
+          <div class="career-stat-row">
+            <span class="career-stat-row__label">World Championships</span>
+            <span class="career-stat-row__value">0</span>
+          </div>
+        </div>
+
+        <div class="driver-profile" aria-label="Kişisel profil">
+          <div class="driver-profile__header" aria-hidden="true">
+            <span class="driver-profile__slashes">/ /</span>
+            <img src="formula-1-logo.png" alt="" class="driver-profile__logo" />
+          </div>
+          <div class="driver-profile__grid">
+            <div class="profile-info">
+              <span class="profile-info__label">Date of Birth</span>
+              <span class="profile-info__value">27/05/2003</span>
+            </div>
+            <div class="profile-info">
+              <span class="profile-info__label">Nation</span>
+              <span class="profile-info__value">Argentina</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-strip">
+        <a href="index.html" class="footer-logo" aria-label="Formula 1 Ana Sayfa">
+          <img src="formula-1-logo.png" alt="Formula 1 Logosu" class="logo-img logo-img--footer" />
+        </a>
+        <div class="footer-red-line" aria-hidden="true"></div>
+      </div>
+      <p class="footer-copyright">&copy; 2020-2026 Formula One World Championship Limited</p>
+    </footer>
+  </body>
+</html>

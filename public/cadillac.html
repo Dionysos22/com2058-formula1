@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Cadillac Formula 1 takÄ±m sayfasÄ± â€” sÃ¼rÃ¼cÃ¼ler, istatistikler ve takÄ±m profili." />
+    <title>Cadillac | Formula 1</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="team-detail.css" />
+
+    <!-- TakÄ±ma Ã¶zel renk override'larÄ± â€” DB entegrasyonu iÃ§in burasÄ± gÃ¼ncellenir -->
+    <style>
+      :root {
+        --tc1: #D7D6DD;
+        --tc2: #AAAAAD;
+        --tc3: #232323;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+
+        <a href="index.html" class="header-logo" aria-label="Formula 1 Ana Sayfa">
+          <img src="formula-1-logo.png" alt="Formula 1" class="logo-img logo-img--header" />
+        </a>
+
+        <nav class="main-nav" aria-label="Ana navigasyon">
+          <ul class="nav-list" role="list">
+            <li class="nav-item"><a href="schedule.html" class="nav-link" id="nav-schedule">Schedule</a></li>
+            <li class="nav-item"><a href="result.html"   class="nav-link" id="nav-result">Result</a></li>
+            <li class="nav-item"><a href="drivers.html"  class="nav-link" id="nav-drivers">Drivers</a></li>
+            <li class="nav-item"><a href="teams.html"    class="nav-link nav-link--active" id="nav-teams">Teams</a></li>
+          </ul>
+        </nav>
+
+        <!-- TakÄ±m logosu saÄŸ uÃ§ta -->
+        <div class="header-team-logo">
+          <img src="cadillac logo.avif" alt="Cadillac logosu" class="logo-img logo-img--team" />
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main id="main-content" role="main">
+
+      <!-- â”€â”€ HERO â”€â”€ -->
+      <section class="team-hero" aria-label="Cadillac hero bÃ¶lÃ¼mÃ¼">
+        <span class="team-hero__bg-name" aria-hidden="true">CADILLAC</span>
+        <img
+          class="team-hero__car"
+          src="cadillac araba.avif"
+          alt="Cadillac 2025 F1 aracÄ±"
+        />
+      </section>
+
+      <!-- â”€â”€ DRIVERS â”€â”€ -->
+      <section class="section-drivers" aria-labelledby="drivers-heading">
+        <div class="section-label">
+          <div class="section-label__deco" aria-hidden="true"><span></span><span></span></div>
+          <h2 class="section-label__title" id="drivers-heading">DRIVERS</h2>
+          <div class="section-label__line" aria-hidden="true"></div>
+        </div>
+
+        <div class="drivers-grid">
+
+          <!-- Pilot 1 -->
+          <a href="sergio-perez.html" class="driver-card" id="driver-sergio-perez" aria-label="Sergio Perez sayfasına git">
+            <div class="driver-card__info">
+              <span class="driver-card__name">Colton<br>Herta</span>
+              <span class="driver-card__number">12</span>
+            </div>
+            <img class="driver-card__photo" src="cadillac 1.avif" alt="Colton Herta" />
+          </a>
+
+          <!-- Pilot 2 -->
+          <a href="valtteri-bottas.html" class="driver-card" id="driver-valtteri-bottas" aria-label="Valtteri Bottas sayfasına git">
+            <div class="driver-card__info">
+              <span class="driver-card__name">Marcus<br>Armstrong</span>
+              <span class="driver-card__number">45</span>
+            </div>
+            <img class="driver-card__photo" src="cadillac 2.avif" alt="Marcus Armstrong" />
+          </a>
+
+        </div>
+      </section>
+
+      <!-- â”€â”€ STATISTIC â”€â”€ -->
+      <section class="section-stats" aria-labelledby="stats-heading">
+        <div class="section-label">
+          <div class="section-label__deco" aria-hidden="true"><span></span><span></span></div>
+          <h2 class="section-label__title" id="stats-heading">STATISTIC</h2>
+          <div class="section-label__line" aria-hidden="true"></div>
+        </div>
+
+        <div class="season-list">
+          <div class="season-item">
+            <p class="season-item__year">2026 SEASON</p>
+            <div class="season-item__data">
+              <div class="stat-block">
+                <span class="stat-block__label">Season Position</span>
+                <span class="stat-block__value">â€”</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-block__label">Season Points</span>
+                <span class="stat-block__value">â€”</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- â”€â”€ TEAM PROFILE â”€â”€ -->
+      <section class="section-profile" aria-labelledby="profile-heading">
+        <div class="section-label">
+          <div class="section-label__deco" aria-hidden="true"><span></span><span></span></div>
+          <h2 class="section-label__title" id="profile-heading">TEAM PROFILE</h2>
+          <div class="section-label__line" aria-hidden="true"></div>
+        </div>
+
+        <div class="profile-list">
+          <div class="profile-item">
+            <span class="profile-item__label">Full Team Name</span>
+            <span class="profile-item__value">Cadillac Formula One Team</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item__label">Base</span>
+            <span class="profile-item__value">Concord, NC, USA</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item__label">Team Chief</span>
+            <span class="profile-item__value">Graeme Lowdon</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item__label">First Team Entry</span>
+            <span class="profile-item__value">2026</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item__label">Power Unit</span>
+            <span class="profile-item__value">Ferrari</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-strip">
+        <a href="index.html" class="footer-logo" aria-label="Formula 1 Ana Sayfa">
+          <img src="formula-1-logo.png" alt="Formula 1 Logosu" class="logo-img logo-img--footer" />
+        </a>
+        <div class="footer-red-line" aria-hidden="true"></div>
+      </div>
+      <p class="footer-copyright">&copy; 2020-2026 Formula One World Championship Limited</p>
+    </footer>
+
+  </body>
+</html>
+

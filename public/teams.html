@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Formula 1 takımları — 2026 sezonu tüm constructor'lar."
+    />
+    <title>Teams | Formula 1</title>
+
+    <!-- Google Fonts: Montserrat (italic + bold varyantları dahil) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="page-teams">
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+
+        <!-- Sol: Logo -->
+        <a href="index.html" class="header-logo" aria-label="Formula 1 Ana Sayfa">
+          <img
+            src="formula-1-logo.png"
+            alt="Formula 1 Logosu"
+            class="logo-img logo-img--header"
+          />
+        </a>
+
+        <!-- Sağ: Navigasyon -->
+        <nav class="main-nav" aria-label="Ana navigasyon">
+          <ul class="nav-list" role="list">
+            <li class="nav-item">
+              <a href="schedule.html" class="nav-link" id="nav-schedule">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a href="result.html" class="nav-link" id="nav-result">Result</a>
+            </li>
+            <li class="nav-item">
+              <a href="drivers.html" class="nav-link" id="nav-drivers">Drivers</a>
+            </li>
+            <li class="nav-item">
+              <a href="teams.html" class="nav-link nav-link--active" id="nav-teams">Teams</a>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="site-main site-main--teams" id="main-content" role="main">
+
+      <!-- Sayfa Başlığı (Title Section) -->
+      <section class="page-title-section" aria-labelledby="page-heading">
+        <!-- Üst stripe satırı: mini F1 logo + kırmızı şerit -->
+        <div class="page-title-stripe">
+          <img
+            src="formula-1-logo.png"
+            alt=""
+            class="logo-img logo-img--stripe"
+            aria-hidden="true"
+          />
+          <div class="stripe-line" aria-hidden="true"></div>
+        </div>
+
+        <!-- "TEAMS" başlığı + kırmızı accent çizgisi -->
+        <div class="page-title-row">
+          <h1 class="page-title" id="page-heading">TEAMS</h1>
+          <div class="page-title-accent" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- Takım Kartları -->
+      <section class="teams-section" aria-label="Takımlar listesi">
+        <div class="teams-grid">
+
+          <!-- ─── Ferrari ─── -->
+          <a
+            href="ferrari.html"
+            class="team-card team-card--ferrari"
+            id="team-ferrari"
+            aria-label="Ferrari takım sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name">Ferrari</h2>
+              <img
+                src="ferrari logo.png"
+                alt="Ferrari logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="ferrari araba.avif"
+                alt="Ferrari 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+          <!-- ─── Aston Martin ─── -->
+          <a
+            href="aston-martin.html"
+            class="team-card team-card--aston-martin"
+            id="team-aston-martin"
+            aria-label="Aston Martin takım sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name">Aston Martin</h2>
+              <img
+                src="aston martin logo.png"
+                alt="Aston Martin logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="aston araba.avif"
+                alt="Aston Martin 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+          <!-- ─── Alpine ─── -->
+          <a
+            href="alpine.html"
+            class="team-card team-card--alpine"
+            id="team-alpine"
+            aria-label="Alpine takım sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name">Alpine</h2>
+              <img
+                src="Alpine logo.avif"
+                alt="Alpine logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="Alpine araba.avif"
+                alt="Alpine 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+          <!-- ─── Audi ─── -->
+          <a
+            href="audi.html"
+            class="team-card team-card--audi"
+            id="team-audi"
+            aria-label="Audi takım sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name">Audi</h2>
+              <img
+                src="audi logo.avif"
+                alt="Audi logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="audi araba.avif"
+                alt="Audi 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+          <!-- ─── Cadillac ─── (açık arka plan → koyu metin) -->
+          <a
+            href="cadillac.html"
+            class="team-card team-card--cadillac"
+            id="team-cadillac"
+            aria-label="Cadillac takım sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name team-card__name--dark">Cadillac</h2>
+              <img
+                src="cadillac logo.avif"
+                alt="Cadillac logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="cadillac araba.avif"
+                alt="Cadillac 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+          <!-- ─── Haas F1 Team ─── (açık arka plan → koyu metin) -->
+          <a
+            href="haas.html"
+            class="team-card team-card--haas"
+            id="team-haas"
+            aria-label="Haas F1 Team sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name team-card__name--dark">Haas F1 Team</h2>
+              <img
+                src="haas logo.avif"
+                alt="Haas F1 Team logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="haas araba.avif"
+                alt="Haas 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+          <!-- ─── McLaren ─── -->
+          <a
+            href="mclaren.html"
+            class="team-card team-card--mclaren"
+            id="team-mclaren"
+            aria-label="McLaren takım sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name">McLaren</h2>
+              <img
+                src="mclaren logo.avif"
+                alt="McLaren logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="mclaren araba.avif"
+                alt="McLaren 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+          <!-- ─── Mercedes ─── -->
+          <a
+            href="mercedes.html"
+            class="team-card team-card--mercedes"
+            id="team-mercedes"
+            aria-label="Mercedes takım sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name">Mercedes</h2>
+              <img
+                src="mercedes logo.avif"
+                alt="Mercedes logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="mercedes araba.avif"
+                alt="Mercedes 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+          <!-- ─── Racing Bulls ─── -->
+          <a
+            href="racing-bulls.html"
+            class="team-card team-card--racing-bulls"
+            id="team-racing-bulls"
+            aria-label="Racing Bulls takım sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name">Racing Bulls</h2>
+              <img
+                src="racing bulls logo.avif"
+                alt="Racing Bulls logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="racing bulls araba.avif"
+                alt="Racing Bulls 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+          <!-- ─── Red Bull ─── -->
+          <a
+            href="red-bull.html"
+            class="team-card team-card--red-bull"
+            id="team-red-bull"
+            aria-label="Red Bull takım sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name">Red Bull</h2>
+              <img
+                src="red bull logo.avif"
+                alt="Red Bull logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="red bull araba.avif"
+                alt="Red Bull 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+          <!-- ─── Williams ─── -->
+          <a
+            href="williams.html"
+            class="team-card team-card--williams"
+            id="team-williams"
+            aria-label="Williams takım sayfasına git"
+          >
+            <div class="team-card__header">
+              <h2 class="team-card__name">Williams</h2>
+              <img
+                src="williams logo.avif"
+                alt="Williams logosu"
+                class="team-card__logo"
+              />
+            </div>
+            <div class="team-card__car-wrapper">
+              <img
+                src="williams araba.avif"
+                alt="Williams 2025 F1 aracı"
+                class="team-card__car"
+              />
+            </div>
+          </a>
+
+        </div><!-- /.teams-grid -->
+      </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer" role="contentinfo">
+
+      <!-- Üst şerit satırı: logo + kırmızı çizgi -->
+      <div class="footer-strip">
+        <a href="index.html" class="footer-logo" aria-label="Formula 1 Ana Sayfa">
+          <img
+            src="formula-1-logo.png"
+            alt="Formula 1 Logosu"
+            class="logo-img logo-img--footer"
+          />
+        </a>
+        <div class="footer-red-line" aria-hidden="true"></div>
+      </div>
+
+      <!-- Alt: Telif metni -->
+      <p class="footer-copyright">
+        &copy; 2020-2026 Formula One World Championship Limited
+      </p>
+
+    </footer>
+
+  </body>
+</html>

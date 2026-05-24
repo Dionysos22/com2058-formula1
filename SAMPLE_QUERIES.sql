@@ -75,13 +75,82 @@ SELECT
 FROM drivers
 WHERE driver_id = 1;
 
--- Extra: driver championship standings computed from RESULTS
+-- 7) Driver championship standings for a season (computed from RESULTS)
 SELECT
   d.driver_code,
-  SUM(rr.points) AS total_points
+  CONCAT(d.first_name, ' ', d.last_name) AS driver_name,
+  SUM(rr.points) AS total_points,
+  DENSE_RANK() OVER (ORDER BY SUM(rr.points) DESC) AS season_position
 FROM race_results rr
 JOIN drivers d ON d.driver_id = rr.driver_id
 WHERE rr.season_year = 2024
-GROUP BY d.driver_id, d.driver_code
-ORDER BY total_points DESC
+GROUP BY d.driver_id, d.driver_code, d.first_name, d.last_name
+ORDER BY season_position
 LIMIT 10;
+
+-- 8) Podium finishers for a specific Grand Prix
+SELECT
+  rr.finish_position,
+  d.driver_code,
+  CONCAT(d.first_name, ' ', d.last_name) AS driver_name,
+  t.team_name,
+  rr.points
+FROM race_results rr
+JOIN drivers d ON d.driver_id = rr.driver_id
+JOIN team_drivers td
+  ON td.season_year = rr.season_year
+ AND td.driver_id = rr.driver_id
+ AND td.role = 'MAIN'
+JOIN teams t ON t.team_id = td.team_id
+WHERE rr.season_year = 2024
+  AND rr.round_number = 1
+  AND rr.finish_position BETWEEN 1 AND 3
+ORDER BY rr.finish_position;
+
+-- 9) Circuits grouped by country (with race count)
+SELECT
+  c.country,
+  COUNT(DISTINCT c.circuit_id) AS circuit_count,
+  COUNT(r.season_year) AS total_races_hosted
+FROM circuits c
+LEFT JOIN races r ON r.circuit_id = c.circuit_id
+GROUP BY c.country
+ORDER BY total_races_hosted DESC, c.country;
+
+-- 10) Stored constructors' standings vs season (team_standings cache)
+SELECT
+  t.team_name,
+  ts.season_position,
+  ts.season_points
+FROM team_standings ts
+JOIN teams t ON t.team_id = ts.team_id
+WHERE ts.season_year = 2024
+ORDER BY ts.season_position;
+
+-- 11) Race winners at a circuit across all seasons
+SELECT
+  r.season_year,
+  r.grand_prix_name,
+  CONCAT(d.first_name, ' ', d.last_name) AS winner
+FROM races r
+JOIN race_results rr
+  ON rr.season_year = r.season_year
+ AND rr.round_number = r.round_number
+ AND rr.finish_position = 1
+JOIN drivers d ON d.driver_id = rr.driver_id
+WHERE r.circuit_id = 1
+ORDER BY r.season_year DESC;
+
+-- 12) Main drivers per team in a season (with car number)
+SELECT
+  t.team_name,
+  d.car_no,
+  d.driver_code,
+  CONCAT(d.first_name, ' ', d.last_name) AS driver_name,
+  td.seat_no
+FROM team_drivers td
+JOIN teams t ON t.team_id = td.team_id
+JOIN drivers d ON d.driver_id = td.driver_id
+WHERE td.season_year = 2024
+  AND td.role = 'MAIN'
+ORDER BY t.team_name, td.seat_no;
