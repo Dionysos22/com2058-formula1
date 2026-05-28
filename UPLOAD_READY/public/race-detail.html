@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Race Detail | Formula 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700;1,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .site-main--race-detail { align-items: stretch; flex-direction: column; padding: 0; background: #F7F4F1; min-height: 60vh; }
+      .race-hero { background: #111; padding: 36px 7% 32px; }
+      .race-hero__round { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #E10600; margin: 0 0 8px; }
+      .race-hero__name { font-size: clamp(1rem, 3vw, 1.6rem); font-weight: 900; text-transform: uppercase; color: #fff; margin: 0 0 10px; }
+      .race-hero__date { font-size: 0.78rem; font-weight: 600; color: #888; margin: 0; text-transform: uppercase; }
+      .race-section { padding: 36px 7%; max-width: 900px; width: 100%; margin: 0 auto; box-sizing: border-box; }
+      .race-section__heading { font-size: 1.15rem; font-weight: 900; font-style: italic; text-transform: uppercase; color: #111; display: flex; align-items: center; gap: 12px; }
+      .race-section__heading::after { content: ''; flex: 1; height: 2px; background: #E10600; }
+      .result-table { width: 100%; background: #fff; border-collapse: collapse; margin-top: 16px; }
+      .result-table th, .result-table td { padding: 12px 16px; text-align: left; }
+      .result-table thead tr { border-bottom: 2px solid #E10600; }
+      .show-all-btn { display: inline-block; margin-top: 16px; color: #E10600; font-weight: 700; text-decoration: none; }
+      .circuit-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+      .circuit-img { width: 100%; border-radius: 8px; }
+      .circuit-details dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; }
+      .circuit-details dt { font-weight: 700; color: #888; text-transform: uppercase; font-size: 0.7rem; }
+      @media (max-width: 768px) { .circuit-layout { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body data-page="race-detail">
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <a href="index.html" class="header-logo"><img src="formula-1-logo.png" alt="Formula 1" class="logo-img logo-img--header" /></a>
+        <nav class="main-nav">
+          <ul class="nav-list" role="list">
+            <li class="nav-item"><a href="schedule.html" class="nav-link nav-link--active">Schedule</a></li>
+            <li class="nav-item"><a href="result.html" class="nav-link">Result</a></li>
+            <li class="nav-item"><a href="drivers.html" class="nav-link">Drivers</a></li>
+            <li class="nav-item"><a href="teams.html" class="nav-link">Teams</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="site-main site-main--race-detail">
+      <div class="race-hero">
+        <p class="race-hero__round" id="race-hero-round">Round —</p>
+        <h1 class="race-hero__name" id="race-hero-name">Loading…</h1>
+        <p class="race-hero__date" id="race-hero-date"></p>
+      </div>
+      <section class="race-section">
+        <h2 class="race-section__heading">Result</h2>
+        <table class="result-table">
+          <thead><tr><th>POS</th><th>NO</th><th>Driver</th></tr></thead>
+          <tbody id="race-result-body"><tr><td colspan="3">Loading…</td></tr></tbody>
+        </table>
+        <a href="result.html" class="show-all-btn" id="race-show-all">Show all results</a>
+      </section>
+      <section class="race-section">
+        <h2 class="race-section__heading">Circuit</h2>
+        <div class="circuit-layout">
+          <img id="race-circuit-img" src="formula-1-logo.png" alt="" class="circuit-img" />
+          <div class="circuit-details"><dl id="race-circuit-dl"></dl></div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-strip">
+        <a href="index.html" class="footer-logo"><img src="formula-1-logo.png" alt="" class="logo-img logo-img--footer" /></a>
+        <div class="footer-red-line"></div>
+      </div>
+      <p class="footer-copyright">&copy; Formula One World Championship</p>
+    </footer>
+    <script src="f1-api.js"></script>
+    <script src="f1-meta.js"></script>
+    <script src="f1-pages.js"></script>
+  </body>
+</html>

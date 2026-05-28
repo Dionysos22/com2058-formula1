@@ -1,0 +1,368 @@
+/* ============================================================
+   DRIVER DETAIL CSS — Pilot detay sayfaları  v2
+   ============================================================
+   Her pilot HTML sayfasında <style>:root ile override edilir:
+     --dc1  Renk 1 → Diagonal arka plan, last name rengi, career stat rakamları
+     --dc2  Renk 2 → Takım paleti referansı
+     --dc3  Renk 3 → Yarış numarası rengi
+   ============================================================ */
+
+:root {
+  --dc1: #e10600;
+  --dc2: #1c1c1c;
+  --dc3: #ffffff;
+}
+
+
+/* ── SITE-MAIN OVERRIDE ── */
+.site-main--driver-detail {
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 0;
+}
+
+
+/* ── HEADER TAKIM LOGOSU — sabit boyut kısıtlaması ── */
+/* Takım logolarının header'da dev görünmesini önler */
+.logo-img--team {
+  width: 120px;
+  max-width: 120px;
+  height: 40px;
+  max-height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.driver-hero {
+  position: relative;
+  height: 460px;
+  overflow: hidden;
+  background: #f0f0f0;
+  user-select: none;
+}
+
+/* ── Diagonal renkli sağ yarı (Renk 1) ── */
+.driver-hero__bg {
+  position: absolute;
+  inset: 0;
+  background: var(--dc1);
+  clip-path: polygon(38% 0, 100% 0, 100% 100%, 29% 100%);
+  z-index: 0;
+}
+
+/* ── İlk isim: soluk büyük arka plan yazısı ── */
+.driver-hero__firstname {
+  position: absolute;
+  top: 8%;
+  left: 3%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(3rem, 10vw, 7.5rem);
+  font-weight: 700;
+  font-style: italic;
+  color: rgba(110, 110, 110, 0.17);
+  z-index: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+/* ── Yarış numarası: Renk 3 ile büyük, fotoğrafın arkasında ── */
+/* z-index: 1 → bg(0) üstünde, foto(2) altında */
+.driver-hero__number {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(8rem, 22vw, 400px);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--dc3);
+  opacity: 0.9;
+  z-index: 1;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+}
+
+/* ── Pilot fotoğrafı: tam boy, kesilmeden ── */
+/* object-fit: contain → görselin tamamı görünür, kırılmaz */
+.driver-hero__photo {
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  height: 100%;
+  max-height: 85vh;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom right;
+  z-index: 2;
+}
+
+/* ── Soyisim plakası: sol alt, Renk 1 ── */
+.driver-hero__nameplate {
+  position: absolute;
+  bottom: 22px;
+  left: 3.5%;
+  z-index: 4;
+}
+
+.driver-hero__lastname {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.1rem, 3.5vw, 2rem);
+  font-weight: 900;
+  font-style: normal;
+  text-transform: uppercase;
+  color: var(--dc1);
+  letter-spacing: 0.07em;
+  line-height: 1;
+}
+
+/* ── Alt vurgu şeridi (Renk 1) ── */
+.driver-hero__strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--dc1);
+  z-index: 5;
+}
+
+
+/* ============================================================
+   INFO WRAPPER (Stats + Profile)
+   ============================================================ */
+.driver-info {
+  background: #ffffff;
+  padding: 0 7% 3.5rem;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   SEASON BLOCKS
+   ============================================================ */
+.driver-seasons {
+  padding-top: 2rem;
+}
+
+.season-block {
+  padding: 1.15rem 0;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.season-block:first-child {
+  border-top: 1px solid #ebebeb;
+}
+
+.season-block__year {
+  font-size: 1.12rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: #111111;
+  letter-spacing: 0.03em;
+  margin: 0 0 0.5rem;
+}
+
+.season-block__data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 2rem;
+}
+
+.stat-col__label {
+  display: block;
+  font-size: 0.52rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: #aaaaaa;
+  margin-bottom: 2px;
+}
+
+.stat-col__value {
+  display: block;
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #111111;
+  line-height: 1;
+}
+
+
+/* ============================================================
+   CAREER STATS
+   ============================================================ */
+.career-stats {
+  padding: 2.5rem 0 0;
+}
+
+.career-stats__heading {
+  font-size: 1.1rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  color: #111111;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.4rem;
+}
+
+.career-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid #ebebeb;
+}
+
+.career-stat-row__label {
+  font-size: 0.52rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: #aaaaaa;
+  min-width: 155px;
+}
+
+/* Vurgulu büyük rakamlar — Renk 1 */
+.career-stat-row__value {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--dc1);
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+
+
+/* ============================================================
+   DRIVER PROFILE
+   ============================================================ */
+.driver-profile {
+  margin-top: 2rem;
+  border-top: 3px solid var(--dc1);
+}
+
+.driver-profile__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1.2rem 0 1.5rem;
+}
+
+/* // dekoratif slash — Renk 1 */
+.driver-profile__slashes {
+  font-size: 1.1rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--dc1);
+  letter-spacing: 4px;
+  line-height: 1;
+}
+
+.driver-profile__logo {
+  width: 44px;
+  height: auto;
+  display: block;
+}
+
+.driver-profile__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2rem;
+}
+
+.profile-info__label {
+  display: block;
+  font-size: 0.52rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: #aaaaaa;
+  margin-bottom: 5px;
+}
+
+.profile-info__value {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #111111;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .driver-hero {
+    height: 380px;
+  }
+
+  .driver-hero__photo {
+    right: 2%;
+  }
+
+  .logo-img--team {
+    width: 90px;
+    height: 32px;
+  }
+
+  .driver-info {
+    padding: 0 5% 2.5rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .driver-hero {
+    height: 310px;
+  }
+
+  .driver-hero__bg {
+    clip-path: polygon(42% 0, 100% 0, 100% 100%, 33% 100%);
+  }
+
+  .driver-hero__number {
+    font-size: clamp(5rem, 22vw, 10rem);
+    opacity: 0.13;
+  }
+
+  .driver-info {
+    padding: 0 4% 2rem;
+  }
+
+  .career-stat-row__label {
+    min-width: 110px;
+  }
+
+  .career-stat-row__value {
+    font-size: 2rem;
+  }
+
+  .profile-info__value {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .driver-hero {
+    height: 265px;
+  }
+
+  .logo-img--team {
+    width: 72px;
+    height: 26px;
+  }
+}

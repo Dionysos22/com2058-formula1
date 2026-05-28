@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FORMULA 1 QATAR AIRWAYS AZERBAIJAN GRAND PRIX 2026 — Race result, circuit info and driver standings." />
+    <title>Round 15 | Formula 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700;1,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ── Race Detail Page Styles ── */
+      .site-main--race-detail {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 0;
+        background: #F7F4F1;
+        min-height: 60vh;
+      }
+
+      /* Hero: yarış adı + tarih */
+      .race-hero {
+        background: #111111;
+        padding: 36px 7% 32px;
+      }
+      .race-hero__round {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #E10600;
+        margin: 0 0 8px;
+      }
+      .race-hero__name {
+        font-size: clamp(1rem, 3vw, 1.6rem);
+        font-weight: 900;
+        text-transform: uppercase;
+        color: #ffffff;
+        line-height: 1.25;
+        letter-spacing: 0.02em;
+        margin: 0 0 10px;
+      }
+      .race-hero__date {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #888888;
+        letter-spacing: 0.05em;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      /* Section wrapper */
+      .race-section {
+        padding: 36px 7%;
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+
+      /* Section heading (RESULT / CIRCUIT) */
+      .race-section__heading {
+        font-size: 1.15rem;
+        font-weight: 900;
+        font-style: italic;
+        text-transform: uppercase;
+        color: #111111;
+        letter-spacing: 0.04em;
+        margin: 0 0 4px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .race-section__heading::after {
+        content: '';
+        flex: 1;
+        height: 2px;
+        background: #E10600;
+        border-radius: 1px;
+      }
+
+      /* Result table */
+      .result-table {
+        width: 100%;
+        background: #ffffff;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-top: 16px;
+      }
+      .result-table thead tr {
+        border-bottom: 2px solid #E10600;
+      }
+      .result-table th {
+        padding: 12px 16px;
+        font-size: 0.55rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.13em;
+        color: #888;
+        text-align: left;
+        background: #ffffff;
+      }
+      .result-table td {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #111;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .result-table tbody tr:last-child td { border-bottom: none; }
+      .result-table tbody tr:hover td { background: #fafafa; }
+      .result-table tbody tr.pos-1 td { background: #fffbf0; }
+      .col-pos { font-weight: 900; font-size: 1rem; width: 44px; }
+      .result-table tbody tr.pos-1 .col-pos { color: #E10600; }
+      .col-no  { width: 54px; font-size: 0.8rem; font-weight: 700; color: #555; }
+      .badge-dnf { display: inline-block; font-size: 0.58rem; font-weight: 700; background: #f0f0f0; color: #888; padding: 2px 6px; border-radius: 4px; letter-spacing: 0.05em; }
+      .no-result { text-align: center; color: #aaa; font-style: italic; padding: 20px !important; }
+
+      /* Show all button */
+      .show-all-btn {
+        display: inline-block;
+        margin-top: 16px;
+        padding: 10px 28px;
+        border: 1.5px solid #111;
+        border-radius: 999px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #111;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+      }
+      .show-all-btn:hover {
+        background: #E10600;
+        border-color: #E10600;
+        color: #ffffff;
+      }
+
+      /* Circuit section */
+      .circuit-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: center;
+        margin-top: 20px;
+      }
+      .circuit-img-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+      }
+      .circuit-img {
+        max-width: 100%;
+        max-height: 220px;
+        object-fit: contain;
+        display: block;
+      }
+      .circuit-details dl {
+        margin: 0;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 6px 16px;
+      }
+      .circuit-details dt {
+        font-size: 0.55rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #aaa;
+        align-self: center;
+        white-space: nowrap;
+      }
+      .circuit-details dd {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #111;
+        margin: 0;
+        align-self: center;
+      }
+
+      @media (max-width: 640px) {
+        .circuit-layout { grid-template-columns: 1fr; }
+        .race-section { padding: 24px 5%; }
+        .race-hero { padding: 24px 5% 20px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <a href="index.html" class="header-logo" aria-label="Formula 1 Ana Sayfa">
+          <img src="formula-1-logo.png" alt="Formula 1" class="logo-img logo-img--header" />
+        </a>
+        <nav class="main-nav" aria-label="Ana navigasyon">
+          <ul class="nav-list" role="list">
+            <li class="nav-item"><a href="schedule.html" class="nav-link nav-link--active" id="nav-schedule">Schedule</a></li>
+            <li class="nav-item"><a href="result.html"   class="nav-link" id="nav-result">Result</a></li>
+            <li class="nav-item"><a href="drivers.html"  class="nav-link" id="nav-drivers">Drivers</a></li>
+            <li class="nav-item"><a href="teams.html"    class="nav-link" id="nav-teams">Teams</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="site-main site-main--race-detail" id="main-content" role="main">
+
+      <!-- Hero -->
+      <div class="race-hero">
+        <p class="race-hero__round">Round 15 &nbsp;/ &nbsp;2026 Season</p>
+        <h1 class="race-hero__name">FORMULA 1 QATAR AIRWAYS AZERBAIJAN GRAND PRIX 2026</h1>
+        <p class="race-hero__date">24 – 26 SEPTEMBER 2026</p>
+      </div>
+
+      <!-- RESULT -->
+      <section class="race-section" aria-labelledby="result-heading-15">
+        <h2 class="race-section__heading" id="result-heading-15">Result</h2>
+        <table class="result-table" role="table">
+          <thead>
+            <tr>
+              <th scope="col">POS</th>
+              <th scope="col">NO</th>
+              <th scope="col">Driver</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr><td colspan="3" class="no-result">Race not yet held</td></tr>
+          </tbody>
+        </table>
+        <a href="result.html?year=2026&round=15" class="show-all-btn" id="show-all-15">Show all results</a>
+      </section>
+
+      <!-- CIRCUIT -->
+      <section class="race-section" aria-labelledby="circuit-heading-15">
+        <h2 class="race-section__heading" id="circuit-heading-15">Circuit</h2>
+        <div class="circuit-layout">
+          <div class="circuit-img-wrap">
+            <img src="15bakudetailed.avif" alt="Baku City Circuit" class="circuit-img" />
+          </div>
+          <div class="circuit-details">
+            <dl>
+              <dt>Circuit</dt>  <dd>Baku City Circuit</dd>
+              <dt>Country</dt>  <dd>Azerbaijan</dd>
+              <dt>City</dt>     <dd>Baku</dd>
+              <dt>Laps</dt>     <dd>51</dd>
+              <dt>Length</dt>   <dd>6.003 km</dd>
+              <dt>First GP</dt> <dd>2016</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-strip">
+        <a href="index.html" class="footer-logo" aria-label="Formula 1 Ana Sayfa">
+          <img src="formula-1-logo.png" alt="Formula 1 Logosu" class="logo-img logo-img--footer" />
+        </a>
+        <div class="footer-red-line" aria-hidden="true"></div>
+      </div>
+      <p class="footer-copyright">&copy; 2020-2026 Formula One World Championship Limited</p>
+    </footer>
+  </body>
+</html>

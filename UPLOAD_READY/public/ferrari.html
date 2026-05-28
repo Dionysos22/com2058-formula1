@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Ferrari Formula 1 takım sayfası — sürücüler, istatistikler ve takım profili." />
+    <title>Ferrari | Formula 1</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="team-detail.css" />
+
+    <!-- Takıma özel renk override'ları — DB entegrasyonu için burası güncellenir -->
+    <style>
+      :root {
+        --tc1: #ED1D24;
+        --tc2: #5C0012;
+        --tc3: #FFF200;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+
+        <a href="index.html" class="header-logo" aria-label="Formula 1 Ana Sayfa">
+          <img src="formula-1-logo.png" alt="Formula 1" class="logo-img logo-img--header" />
+        </a>
+
+        <nav class="main-nav" aria-label="Ana navigasyon">
+          <ul class="nav-list" role="list">
+            <li class="nav-item"><a href="schedule.html" class="nav-link" id="nav-schedule">Schedule</a></li>
+            <li class="nav-item"><a href="result.html"   class="nav-link" id="nav-result">Result</a></li>
+            <li class="nav-item"><a href="drivers.html"  class="nav-link" id="nav-drivers">Drivers</a></li>
+            <li class="nav-item"><a href="teams.html"    class="nav-link nav-link--active" id="nav-teams">Teams</a></li>
+          </ul>
+        </nav>
+
+        <!-- Takım logosu sağ uçta -->
+        <div class="header-team-logo">
+          <img src="ferrari logo.png" alt="Ferrari logosu" class="logo-img logo-img--team" />
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main id="main-content" role="main">
+
+      <!-- ── HERO ── -->
+      <section class="team-hero" aria-label="Ferrari hero bölümü">
+        <span class="team-hero__bg-name" aria-hidden="true">FERRARI</span>
+        <img
+          class="team-hero__car"
+          src="ferrari araba.avif"
+          alt="Ferrari 2025 F1 aracı"
+        />
+      </section>
+
+      <!-- ── DRIVERS ── -->
+      <section class="section-drivers" aria-labelledby="drivers-heading">
+        <div class="section-label">
+          <div class="section-label__deco" aria-hidden="true"><span></span><span></span></div>
+          <h2 class="section-label__title" id="drivers-heading">DRIVERS</h2>
+          <div class="section-label__line" aria-hidden="true"></div>
+        </div>
+
+        <div class="drivers-grid">
+
+          <!-- Pilot 1 -->
+          <a href="charles-leclerc.html" class="driver-card" id="driver-charles-leclerc" aria-label="Charles Leclerc sayfasına git">
+            <div class="driver-card__info">
+              <span class="driver-card__name">Charles<br>Leclerc</span>
+              <span class="driver-card__number">16</span>
+            </div>
+            <img class="driver-card__photo" src="ferrari 1.avif" alt="Charles Leclerc" />
+          </a>
+
+          <!-- Pilot 2 -->
+          <a href="lewis-hamilton.html" class="driver-card" id="driver-lewis-hamilton" aria-label="Lewis Hamilton sayfasına git">
+            <div class="driver-card__info">
+              <span class="driver-card__name">Lewis<br>Hamilton</span>
+              <span class="driver-card__number">44</span>
+            </div>
+            <img class="driver-card__photo" src="ferrari 2.avif" alt="Lewis Hamilton" />
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ── STATISTIC ── -->
+      <section class="section-stats" aria-labelledby="stats-heading">
+        <div class="section-label">
+          <div class="section-label__deco" aria-hidden="true"><span></span><span></span></div>
+          <h2 class="section-label__title" id="stats-heading">STATISTIC</h2>
+          <div class="section-label__line" aria-hidden="true"></div>
+        </div>
+
+        <div class="season-list">
+          <div class="season-item">
+            <p class="season-item__year">2026 SEASON</p>
+            <div class="season-item__data">
+              <div class="stat-block">
+                <span class="stat-block__label">Season Position</span>
+                <span class="stat-block__value">—</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-block__label">Season Points</span>
+                <span class="stat-block__value">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="season-item">
+            <p class="season-item__year">2025 SEASON</p>
+            <div class="season-item__data">
+              <div class="stat-block">
+                <span class="stat-block__label">Season Position</span>
+                <span class="stat-block__value">2nd</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-block__label">Season Points</span>
+                <span class="stat-block__value">584</span>
+              </div>
+            </div>
+          </div>
+          <div class="season-item">
+            <p class="season-item__year">2024 SEASON</p>
+            <div class="season-item__data">
+              <div class="stat-block">
+                <span class="stat-block__label">Season Position</span>
+                <span class="stat-block__value">2nd</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-block__label">Season Points</span>
+                <span class="stat-block__value">652</span>
+              </div>
+            </div>
+          </div>
+          <div class="season-item">
+            <p class="season-item__year">2023 SEASON</p>
+            <div class="season-item__data">
+              <div class="stat-block">
+                <span class="stat-block__label">Season Position</span>
+                <span class="stat-block__value">3rd</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-block__label">Season Points</span>
+                <span class="stat-block__value">406</span>
+              </div>
+            </div>
+          </div>
+          <div class="season-item">
+            <p class="season-item__year">2022 SEASON</p>
+            <div class="season-item__data">
+              <div class="stat-block">
+                <span class="stat-block__label">Season Position</span>
+                <span class="stat-block__value">2nd</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-block__label">Season Points</span>
+                <span class="stat-block__value">554</span>
+              </div>
+            </div>
+          </div>
+          <div class="season-item">
+            <p class="season-item__year">2021 SEASON</p>
+            <div class="season-item__data">
+              <div class="stat-block">
+                <span class="stat-block__label">Season Position</span>
+                <span class="stat-block__value">3rd</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-block__label">Season Points</span>
+                <span class="stat-block__value">323</span>
+              </div>
+            </div>
+          </div>
+          <div class="season-item">
+            <p class="season-item__year">2020 SEASON</p>
+            <div class="season-item__data">
+              <div class="stat-block">
+                <span class="stat-block__label">Season Position</span>
+                <span class="stat-block__value">6th</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-block__label">Season Points</span>
+                <span class="stat-block__value">131</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── TEAM PROFILE ── -->
+      <section class="section-profile" aria-labelledby="profile-heading">
+        <div class="section-label">
+          <div class="section-label__deco" aria-hidden="true"><span></span><span></span></div>
+          <h2 class="section-label__title" id="profile-heading">TEAM PROFILE</h2>
+          <div class="section-label__line" aria-hidden="true"></div>
+        </div>
+
+        <div class="profile-list">
+          <div class="profile-item">
+            <span class="profile-item__label">Full Team Name</span>
+            <span class="profile-item__value">Scuderia Ferrari HP</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item__label">Base</span>
+            <span class="profile-item__value">Maranello, Italy</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item__label">Team Chief</span>
+            <span class="profile-item__value">Frédéric Vasseur</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item__label">First Team Entry</span>
+            <span class="profile-item__value">1950</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item__label">Power Unit</span>
+            <span class="profile-item__value">Ferrari</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-strip">
+        <a href="index.html" class="footer-logo" aria-label="Formula 1 Ana Sayfa">
+          <img src="formula-1-logo.png" alt="Formula 1 Logosu" class="logo-img logo-img--footer" />
+        </a>
+        <div class="footer-red-line" aria-hidden="true"></div>
+      </div>
+      <p class="footer-copyright">&copy; 2020-2026 Formula One World Championship Limited</p>
+    </footer>
+
+  </body>
+</html>
